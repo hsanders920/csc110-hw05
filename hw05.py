@@ -1,7 +1,7 @@
 """
 Name: Hannah Sanders
 Peers: (add any collaborators)
-References: GeeksforGeeks article on Python String index() Method
+References: 
 """
 
 def get_letter():
@@ -50,26 +50,37 @@ def get_digit():
 
 def check_pattern(let, num, st_list):
     """ for every  str in the list, the function checks to see if
-    the letter is in it. If it is then the function stores the
-    index value of the first occurance of the letter.
+    the letter is in it. 
     The function then checks to see if the number is in the str.
-    If it is, the function stores the index value of the first
-    occurance of the number.
-    If the index value of the number is greater than the index value
-    of the letter (the number comes after the charecter), the string prints
-    the string prints and leaves a space for a potential second string
+    It then goes through every charecter in the string checking to see if the
+    charecter is the letter.
+    If it is then the function will store the index value as the current step i it has taken through searching the string.
+    The function breaks after it finds the first instance.
+    This same process is repeated for num, storing its idx value in a different variable.
+    If the idx of the first instance of num is greater than the idx of the first instance of let
+    (the number comes after the letter), then the string will print and leave a space for any other true strings
     """
     
     print("Strings with the pattern:", end=" ")
     
     for st in st_list:
         if let in st:
-            val1= st.index(let) #.index returns the index value of the first instance the charecter appears
             if num in st:
-                val2=st.index(num)
-                if val2>val1:
-                    print(st, end= " ")
-    
+                Tstr= st
+                
+                for i in range(len(Tstr)):
+                    charnow= Tstr[i]
+                    if charnow == let:
+                        idxlet= i
+                        break #breaks so that i does not = the last instance of the let (finishes going through every char)
+                for i in range(len(Tstr)):
+                    charnow= Tstr[i]
+                    if charnow == num:
+                        idxnum=i
+                        break #breaks so that i does not = the last instance of the let (finishes going through every char)
+                if idxnum> idxlet:
+                      print(Tstr, end= " ")
+        
 
 
 #  The function main is INCOMPLETE, you must finish it
@@ -97,7 +108,7 @@ def main ():
         if TA == "y":
             continue
         else:
-            break
+            break 
     print("The End")
 
     # TODO: Add your calls to get_letter, get_digit, and check_pattern
